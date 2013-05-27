@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
  * AIプログラムからの入力があると、gotInput()メソッドが呼び出されるためこのメソッドをオーバーライドして用いること。
  * gotInput(int num, String str) で num で受け取るAI番号は0から始まることに注意すること。
  * 外部プログラムを用いる場合は直接このクラスを使う。
- * @author KeitaroWakabayashi
+ * @author Keitaro Wakabayashi
  *
  */
 public class Game {
@@ -72,7 +72,7 @@ public class Game {
 	 * @param i
 	 * @param b
 	 */
-	protected void printAIStream(int i, String str){
+	protected void putsAIStream(int i, String str){
 		try {
 			ai[i].getOutputStream().write(str.getBytes());
 			ai[i].getOutputStream().flush();
@@ -84,9 +84,9 @@ public class Game {
 	 * バイト配列を全ての AI に出力
 	 * @param b
 	 */
-	synchronized protected void printAIStream(String str){
+	synchronized protected void putsAIStream(String str){
 		for(int i=0; i<AIMAX; i++){
-			printAIStream(i,str);
+			putsAIStream(i,str);
 		}
 	}
 	
@@ -104,6 +104,15 @@ public class Game {
 	 */
 	synchronized protected void putsStatus(String str){
 		textarea.append(str + "\n");
+	}
+	
+	/**
+	 * 開始前に呼び出される
+	 * オーバーライドするとよい
+	 * @throws IOException
+	 */
+	public void start() throws IOException{
+		startAI();
 	}
 	
 	/**
@@ -182,7 +191,7 @@ public class Game {
 						if(0<=i || i<AIMAX || scan.hasNext()) {
 							if(scan.next().equals("<")) {
 								com = scan.nextLine();
-								printAIStream(i,com);
+								putsAIStream(i,com);
 							}else {scan.close();return;}
 						}else {scan.close();return;}
 					}else {scan.close();return;}

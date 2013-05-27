@@ -3,6 +3,8 @@ package mainpackage;
 import java.io.IOException;
 import javax.swing.JTextArea;
 
+import puyopuyo.PuyoPuyo;
+
 /**
  * @author KeitaroWakabayashi
  * AIプログラムを実行するクラス
@@ -76,10 +78,6 @@ public class Executer {
 			throw new IOException(String.format("%d", i+1));
 		}
 		*/
-		try {
-			game = new Game(gamecom, 2, com, textarea);
-		} catch (IOException e) {
-			throw e;
-		}
+		game = new Game(gamecom, 2, com, textarea);
 	}
 }

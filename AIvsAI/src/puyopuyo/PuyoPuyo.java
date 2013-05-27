@@ -1,9 +1,11 @@
-package mainpackage;
+package puyopuyo;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.swing.JTextArea;
+
+import mainpackage.Game;
 
 /**
  * Game クラスを継承したぷよぷよ専用のクラス

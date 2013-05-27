@@ -1,4 +1,4 @@
-package mainpackage;
+package puyopuyo;
 
 import java.util.Random;
 

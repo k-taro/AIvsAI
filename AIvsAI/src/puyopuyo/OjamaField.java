@@ -1,8 +1,8 @@
-package mainpackage;
+package puyopuyo;
 
 /**
  * おじゃまを管理するのクラス
- * 2人用にし太陽していない
+ * 2人用にしか対応していない
  * @author KeitaroWakabayashi
  *
  */

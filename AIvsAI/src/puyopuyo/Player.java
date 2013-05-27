@@ -1,4 +1,4 @@
-package mainpackage;
+package puyopuyo;
 
 public class Player {
 
