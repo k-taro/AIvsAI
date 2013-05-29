@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.swing.JTextArea;
 
 import puyopuyo.PuyoPuyo;
+import reversi.Reversi;
 
 /**
  * @author KeitaroWakabayashi
@@ -50,7 +51,9 @@ public class Executer {
 		*/
 		
 		//game = new Game(in, out, textarea);
-		game = new PuyoPuyo(com,textarea);
+		//game = new PuyoPuyo(com,textarea);
+		game = new Reversi(com,textarea);
+		game.start();
 	}
 	
 	/**

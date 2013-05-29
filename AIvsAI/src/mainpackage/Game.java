@@ -3,6 +3,7 @@ package mainpackage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import javax.swing.JTextArea;
@@ -73,12 +74,19 @@ public class Game {
 	 * @param b
 	 */
 	protected void putsAIStream(int i, String str){
-		try {
-			ai[i].getOutputStream().write(str.getBytes());
+		PrintStream p = new PrintStream(ai[i].getOutputStream());
+		p.println(str);
+		p.flush();
+		System.out.println("AI["+ i + "] < "+str);
+
+
+/*		try {
+			ai[i].getOutputStream().write((str+"\n").getBytes());
 			ai[i].getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	/**
 	 * バイト配列を全ての AI に出力

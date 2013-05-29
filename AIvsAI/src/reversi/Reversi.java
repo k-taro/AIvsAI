@@ -13,18 +13,19 @@ public class Reversi extends Game{
 	public Reversi(String[] com, JTextArea ta) {
 		super(2, com, ta);
 		// TODO 自動生成されたコンストラクター・スタブ
-		field = new Field();		
+		field = new Field();	
 	}
 	
 	@Override
 	public void gotInput(int num, String str){
+		System.out.println("AI[" + num + "] > "+ str);
 		if(turn.isBlack()){
 			if(num == 0){
 				parseCommand(0, str);
 			}
 		}else{
 			if(num == 1){
-				
+				parseCommand(1, str);
 			}
 		}
 	}
@@ -89,6 +90,7 @@ public class Reversi extends Game{
 				turn.next();
 				if(!field.putable(Piece.white)){
 					gameOver();
+					return;
 				}else{
 					//whiteのターンのまま
 				}

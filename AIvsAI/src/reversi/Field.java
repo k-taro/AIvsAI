@@ -7,6 +7,13 @@ public class Field {
 	public Field(){
 		field_size = 8;
 		field_info = new byte[field_size][field_size];
+		for(int x = 0; x<field_size; x++){
+			for(int y = 0; y<field_size; y++){
+				field_info[x][y] = Piece.brank;
+			}
+		}
+		field_info[(field_size / 2) - 1][(field_size / 2) - 1] = field_info[(field_size / 2)][(field_size / 2)] = Piece.white;
+		field_info[(field_size / 2)-1][(field_size / 2)] = field_info[(field_size / 2)][(field_size / 2)-1] = Piece.black;
 	}
 	
 	public void putPiece(byte color, Position position) throws Exception{
@@ -24,48 +31,59 @@ public class Field {
 			rivalcolor = Piece.black;
 		}
 
-		byte[][] temp_field = getTempField();
-		
-		boolean revarse = false;
+		boolean put = false;
 
 		for(int dir = 0; dir < 8; dir++){
 			int x = position.x;
 			int y = position.y;
+
+			boolean revarse = false;
+			byte[][] temp_field = getTempField();
 			
 			while(true){
 				x+=dir_x[dir];
 				y+=dir_y[dir];
 				if(x<0 || field_size<=x || y<0 || field_size<=y){
-					temp_field = getTempField();
 					// field と同じに戻す
 					break;
 				}
 
 				if(temp_field[x][y] == rivalcolor){
 					temp_field[x][y] = color;
+					revarse = true;
 				}else if(temp_field[x][y] == color){
 					field_info = temp_field; // 更新する
-					revarse = true;
+					if(revarse){
+						put = true;
+					}
 					break;
 				}else{
-					temp_field = getTempField();
 					// field と同じに戻す
 					break;
 				}
 			}
 		}
 		
-		if(!revarse){
+		if(put){
+			field_info[position.x][position.y] = color; 
+		}else{
 			throw new Exception();
 		}
 	}
 	
+	/**
+	 * 諸悪の根源
+	 * シャローコピー
+	 * @return
+	 */
 	private byte[][] getTempField() {
 		// TODO 自動生成されたメソッド・スタブ
 		byte[][] temp = new byte[field_size][field_size];
 		for(int x=0;x<field_size;x++){
 			for(int y=0;y<field_size;y++){
-				temp[x][y] = field_info[x][y];
+				//temp[x][y] = new Byte(field_info[x][y]);
+				byte b = field_info[x][y];
+				temp[x][y] = b;
 			}
 		}
 		return temp;
