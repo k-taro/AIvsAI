@@ -1,7 +1,5 @@
 package mainpackage;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
@@ -9,7 +7,6 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
@@ -19,6 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
+import reversi.ReversiSettingPanel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -49,10 +49,13 @@ public class MainWindow {
 		frmAiVsAi.setBounds(100, 100, 500, 400);
 		frmAiVsAi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		JPanel panel_1 = new JPanel();
+		frmAiVsAi.getContentPane().add(panel_1, BorderLayout.NORTH);
+		
 		JLabel lblAivsai = new JLabel("AI vs AI");
+		panel_1.add(lblAivsai);
 		lblAivsai.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblAivsai.setHorizontalAlignment(SwingConstants.CENTER);
-		frmAiVsAi.getContentPane().add(lblAivsai, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		frmAiVsAi.getContentPane().add(panel, BorderLayout.CENTER);
@@ -62,14 +65,15 @@ public class MainWindow {
 		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		
-		JPanel panel_1 = new JPanel();
+			
+/*		JPanel panel_1 = new JPanel();
+//		JPanel panel_1 = new ReversiSettingPanel(null);
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 1;
 		gbc_panel_1.gridy = 1;
-		panel.add(panel_1, gbc_panel_1);
+//		panel.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{189, 0};
 		gbl_panel_1.rowHeights = new int[]{25, 35, 30, 30, 0};
@@ -147,6 +151,7 @@ public class MainWindow {
 		gbc_btnReplay.gridx = 3;
 		gbc_btnReplay.gridy = 0;
 		panel_5.add(btnReplay, gbc_btnReplay);
+		*/
 		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -183,6 +188,16 @@ public class MainWindow {
 		textArea.setColumns(1);
 		scrollPane.setViewportView(textArea);
 		
+		
+		JPanel setting_panel = new ReversiSettingPanel(textArea);
+		GridBagConstraints gbc_setting_panel = new GridBagConstraints();
+		gbc_setting_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_setting_panel.fill = GridBagConstraints.BOTH;
+		gbc_setting_panel.gridx = 1;
+		gbc_setting_panel.gridy = 1;
+		panel.add(setting_panel, gbc_setting_panel);
+		
+		/*
 		JButton btnFight = new JButton("Fight");
 		btnFight.addActionListener(new FightButtonAction(textArea));
 		GridBagConstraints gbc_btnFight = new GridBagConstraints();
@@ -190,6 +205,7 @@ public class MainWindow {
 		gbc_btnFight.gridx = 1;
 		gbc_btnFight.gridy = 0;
 		panel_5.add(btnFight, gbc_btnFight);
+		*/
 	}
 	
 	class FightButtonAction implements ActionListener{

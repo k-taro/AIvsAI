@@ -26,9 +26,9 @@ public class Executer {
 	
 	/**
 	 * AIプログラムを実行するコマンドを引数に渡して対戦開始
-	 * @param com1 AIプログラムを実行するコマンド
-	 * @param com2 AIプログラムを実行するコマンド
-	 * @throws IOException 
+	 * @param num AIの数
+	 * @param com AIのコマンドを持つ String 配列
+	 * @throws IOException
 	 */
 	public void execute(int num, String com[]) throws IOException{
 
